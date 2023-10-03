@@ -1,10 +1,4 @@
-import { Logger, ILogObj , ISettingsParam } from "tslog";
-import { appendFileSync } from "fs";
-
-function logToTransport(nameFile: string) {
-  return (logObject: ILogObj ) =>
-    appendFileSync(nameFile, JSON.stringify(logObject) + "\n");
-}
+import { Logger, ILogObj } from "tslog";
 
 class ProxyLogger {
   private _log: Logger<ILogObj>;
@@ -34,4 +28,4 @@ class ProxyLogger {
   }
 }
 
-export let log = new ProxyLogger()
+export const log = new ProxyLogger()

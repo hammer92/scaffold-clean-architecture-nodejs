@@ -1,26 +1,26 @@
 import { ResponseBuilder } from "./ResponseBuilder";
+import { Request, Response } from "express";
 
 // handle not found errors
-export const notFound = (req: any, res: any, next: any) => {
+export const notFound = (req: Request, res: Response) => {
   if (!res.finished) {
     res
       .status(400)
-      .send(new ResponseBuilder().error("Requested Resource Not Found").toJSON())
+      .json(new ResponseBuilder().error("Requested Resource Not Found").toJSON())
       .end();
   }
 };
 
 // handle internal server errors
 export const internalServerError = (
-  err: any,
-  req: any,
-  res: any,
-  next: any
+  err: Error,
+  req: Request,
+  res: Response
 ) => {
   if (!res.finished) {
     res
-      .status(err.status || 500)
-      .send(new ResponseBuilder().error(err.message).setMeta(err.toJSON()))
+      .status(500)
+      .json(new ResponseBuilder().error(err.message).setMeta(err).toJSON())
       .end();
   }
 };

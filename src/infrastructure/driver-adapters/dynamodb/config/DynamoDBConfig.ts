@@ -1,4 +1,5 @@
-import { UpdateItemCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";interface ParamsDynamoDBConfig{
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+interface ParamsDynamoDBConfig{
   accessKey?:string,
   secretKey?:string,
   endpoint?:string

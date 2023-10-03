@@ -1,7 +1,6 @@
 import { join } from "path";
 import { globSync } from 'glob'
 import TemplateAdapterExpress from "./helper/TemplateAdapterExpress";
-import { log } from "../../../helper/ProxyLogger";
 
 class APIService extends TemplateAdapterExpress {
   constructor() {

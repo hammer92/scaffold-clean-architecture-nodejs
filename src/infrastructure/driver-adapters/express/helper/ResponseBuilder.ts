@@ -1,9 +1,7 @@
-import { log } from "../../../../helper/ProxyLogger"
-
 export class ResponseBuilder {
-  private data: Map<string, any>
+  private data: Map<string, unknown>
 
-  constructor(data: any = null) {
+  constructor() {
     this.data = new Map()
     this.data.set("success", true)
     return this
@@ -21,12 +19,17 @@ export class ResponseBuilder {
     return this
   }
 
-  public setMeta(meta: any) {
+  public setMeta(meta: unknown) {
     this.data.set("meta", meta)
     return this
   }
 
-  public toJSON(): any {
-    return  JSON.stringify(Object.fromEntries(this.data));
+  public setData(data: unknown) {
+    this.data.set("data", data)
+    return this
+  }
+
+  public toJSON(): unknown {
+    return  Object.fromEntries(this.data);
   }
 }

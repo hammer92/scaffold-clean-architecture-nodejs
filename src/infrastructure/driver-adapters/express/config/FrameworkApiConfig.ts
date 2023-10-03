@@ -11,7 +11,7 @@ export default class FrameworkApiConfig{
     return express.Router()
   }
   linten(app:Application):void{
-    let server = http.createServer(app);
+    const server = http.createServer(app);
     server.listen(app.get('port'), function(){
     log.info('Express server listening on port ' + app.get('port'));
     });

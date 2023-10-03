@@ -5,7 +5,7 @@ import morgan from "morgan"
 import FrameworkApiConfig from "../config/FrameworkApiConfig";
 import { internalServerError, notFound } from "./ErrorMiddleware";
 import { ResponseBuilder } from "./ResponseBuilder";
-import { log } from "../../../../helper/ProxyLogger";
+import ApiRestModel from "../model/ApiRestModel";
 
 export default abstract class TemplateAdapterExpress{
   private readonly _frameworkApi: FrameworkApiConfig;
@@ -20,8 +20,8 @@ export default abstract class TemplateAdapterExpress{
   }
 
   public abstract setRoutes(): void;
-  registerRouter(routePath: string) {
-    const route = require(routePath);
+  async registerRouter(routePath: string) {
+    const route:ApiRestModel = await import(routePath).then(imp=>imp.default)
     route.register(this._router);
   }
   public setUp(): void {
