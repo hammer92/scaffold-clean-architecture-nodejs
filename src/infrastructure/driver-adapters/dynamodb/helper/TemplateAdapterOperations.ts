@@ -24,31 +24,11 @@ export default abstract class TemplateAdapterOperations<I, E extends ModelDynamo
       Item: this.toEntity(model),
     });
     try {
-      const data = await this.dynamodb.send(command);
+      await this.dynamodb.send(command);
       return model.item;
       } catch (err) {
       console.error(err);
       }
     return {} as I
   }
-/* 
-public E getById(K id) {
-}
-
-public void delete(E model) {
-    dynamoDBMapper.delete(toEntity(model));
-}
-
-public List<E> findAll() {
-    PaginatedScanList<V> result = dynamoDBMapper.scan(dataClass, new DynamoDBScanExpression());
-    return result.stream().map(this::toModel).collect(Collectors.toList());
-}
-
-protected V toEntity(E model) {
-    return mapper.map(model, dataClass);
-}
-
-protected E toModel(V data) {
-    return data != null ? toEntityFn.apply(data) : null;
-} */
 }

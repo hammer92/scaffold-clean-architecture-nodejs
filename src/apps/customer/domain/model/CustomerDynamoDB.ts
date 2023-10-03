@@ -1,11 +1,11 @@
-import { ModelDynamoDB } from "../helper/ModelDynamoDB";
+import { ModelDynamoDB } from "../../../../infrastructure/driver-adapters/dynamodb/helper/ModelDynamoDB";
 
 export interface ICustomer{
    customerId?:string,
    name:string,
    email:string,
 }
-export class Customer implements ModelDynamoDB<ICustomer> {
+export class CustomerDynamoDB implements ModelDynamoDB<ICustomer> {
   tableName?: string ="customer";
   item: ICustomer ;
   attributeDefinitions: { AttributeName: string, AttributeType: string }[] = [
