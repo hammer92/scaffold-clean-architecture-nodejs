@@ -1,5 +1,5 @@
 import APIService from "./infrastructure/driver-adapters/express/APIService";
-function hello():void {
+function hello(): void {
    APIService.run()
 }
 

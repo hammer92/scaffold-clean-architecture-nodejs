@@ -1,5 +1,5 @@
 export interface ModelDynamoDB<E> {
-  tableName?:string,
+  tableName?: string,
   attributeDefinitions: { AttributeName: string; AttributeType: string; }[]
   item: E
 }

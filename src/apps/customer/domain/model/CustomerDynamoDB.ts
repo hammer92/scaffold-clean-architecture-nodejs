@@ -2,8 +2,8 @@ import { ModelDynamoDB } from "../../../../infrastructure/driver-adapters/dynamo
 import { Customer } from "./Customer";
 
 export class CustomerDynamoDB implements ModelDynamoDB<Customer> {
-  tableName?: string ="customer";
-  item: Customer ;
+  tableName?: string = "customer";
+  item: Customer;
   attributeDefinitions: { AttributeName: string, AttributeType: string }[] = [
     {
       AttributeName: "customerId",
@@ -18,8 +18,8 @@ export class CustomerDynamoDB implements ModelDynamoDB<Customer> {
       AttributeType: "S",
     },
   ]
-  constructor(item:Customer){
+  constructor(item: Customer) {
     this.item = item
   }
-  
+
 }

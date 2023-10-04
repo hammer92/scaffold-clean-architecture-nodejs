@@ -5,15 +5,16 @@ import CustomerSaveUseCase from "../../applications/CustomerSaveUseCase";
 
 
 export class CustomerPostController {
-  constructor(private service: CustomerSaveUseCase) { }
+  constructor(private readonly caseUser: CustomerSaveUseCase) { }
   run(req: TypedRequest<Customer>, res: TypedResponse): void {
 
-    this.service.run(req.body).then(data => {
-      res.status(200).send(new ResponseBuilder()
+    this.caseUser.run(req.body).then(data => {
+      res.status(201).json(new ResponseBuilder()
         .setMessage("Customer saved successfully")
-        .setData(data));
+        .setData(data).toJSON());
     }).catch(error => {
-      res.status(500).send(new ResponseBuilder().error("Something's wrong", error));
+      res.status(500).json(new ResponseBuilder()
+        .error("Something's wrong", error).toJSON());
 
     })
 

@@ -10,12 +10,12 @@ import CustomerSaveUseCase from "../../applications/CustomerSaveUseCase";
 
 class ApiRestCustomer implements ApiRestModel {
   register(routerApi: Router): void {
-    const customerRepository:CustomerRepository = new CustomerRepository()
+    const customerRepository: CustomerRepository = new CustomerRepository()
 
     // implementacion de api save Customer
-    const customerSaveUseCase:CustomerSaveUseCase = new CustomerSaveUseCase(customerRepository)
+    const customerSaveUseCase: CustomerSaveUseCase = new CustomerSaveUseCase(customerRepository)
     const customerPostController: CustomerPostController = new CustomerPostController(customerSaveUseCase);
-    routerApi.post("/customer",  
+    routerApi.post("/customer",
       [
         body("name").exists(),
         body('email').exists().trim().isEmail(),

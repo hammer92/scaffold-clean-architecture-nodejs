@@ -9,11 +9,11 @@ class APIService extends TemplateAdapterExpress {
 
   public setRoutes(): void {
     //this.express.use(`/api/${config.API_VERSION}`, apiUser);
-    const routes = globSync('src/apps/**/ApiRest.*');  
-    routes.forEach((route) => this.registerRouter(join(process.cwd(),route)));
+    const routes = globSync('src/apps/**/ApiRest.*');
+    routes.forEach((route) => this.registerRouter(join(process.cwd(), route)));
   }
 
-  
+
 }
 
 export default new APIService();

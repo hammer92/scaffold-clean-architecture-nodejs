@@ -7,7 +7,7 @@ export class ResponseBuilder {
     return this
   }
 
-  public error(message: string = '', errors?:unknown) {
+  public error(message: string = '', errors?: unknown) {
     this.data.set("success", false)
     this.data.set("errors", errors)
     this.data.set("message", message)
@@ -30,6 +30,6 @@ export class ResponseBuilder {
   }
 
   public toJSON(): unknown {
-    return  Object.fromEntries(this.data);
+    return Object.fromEntries(this.data);
   }
 }

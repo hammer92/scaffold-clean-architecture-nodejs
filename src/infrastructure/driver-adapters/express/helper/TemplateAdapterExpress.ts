@@ -7,7 +7,7 @@ import { internalServerError, notFound } from "./ErrorMiddleware";
 import { ResponseBuilder } from "./ResponseBuilder";
 import ApiRestModel from "../model/ApiRestModel";
 
-export default abstract class TemplateAdapterExpress{
+export default abstract class TemplateAdapterExpress {
   private readonly _frameworkApi: FrameworkApiConfig;
   private readonly _app: Application;
   private readonly _router: Router;
@@ -21,7 +21,7 @@ export default abstract class TemplateAdapterExpress{
 
   public abstract setRoutes(): void;
   async registerRouter(routePath: string) {
-    const route:ApiRestModel = await import(routePath).then(imp=>imp.default)
+    const route: ApiRestModel = await import(routePath).then(imp => imp.default)
     route.register(this._router);
   }
   public setUp(): void {
@@ -59,7 +59,7 @@ export default abstract class TemplateAdapterExpress{
     this._app.use(internalServerError);
   }
 
-  run():void{
+  run(): void {
     this._frameworkApi.linten(this._app)
   }
 }
