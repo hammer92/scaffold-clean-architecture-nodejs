@@ -7,7 +7,7 @@ export class ResponseBuilder {
     return this
   }
 
-  public error(message: string = '', errors = null) {
+  public error(message: string = '', errors?:unknown) {
     this.data.set("success", false)
     this.data.set("errors", errors)
     this.data.set("message", message)

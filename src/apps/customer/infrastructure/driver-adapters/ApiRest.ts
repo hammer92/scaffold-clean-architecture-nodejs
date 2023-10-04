@@ -1,14 +1,29 @@
-import { Router,Request, Response } from "express";
-import ApiRestModel from "../../../../infrastructure/driver-adapters/express/model/ApiRestModel";
-import { ResponseBuilder } from "../../../../infrastructure/driver-adapters/express/helper/ResponseBuilder";
+import { Router } from "express";
+import { body } from "express-validator";
 
-class ApiRestCustomer implements ApiRestModel{
+import ApiRestModel from "../../../../infrastructure/driver-adapters/express/model/ApiRestModel";
+import { route } from "../../../../infrastructure/driver-adapters/express/helper/ValidateRequest";
+import { CustomerPostController } from "../controller/CustomerPostController";
+import CustomerRepository from "../repository/CustomerRepository";
+import CustomerSaveUseCase from "../../applications/CustomerSaveUseCase";
+
+
+class ApiRestCustomer implements ApiRestModel {
   register(routerApi: Router): void {
-      //const coursesGetController: CoursesGetController = new CoursesGetController();
-  //app.get("/api/courses", coursesGetController.run.bind(coursesGetController));
-    routerApi.get("/customer", (req: Request, res: Response) => {
-      return res.status(200).json(new ResponseBuilder().setData({demo:"string"}).toJSON())
-    })
+    const customerRepository:CustomerRepository = new CustomerRepository()
+
+    // implementacion de api save Customer
+    const customerSaveUseCase:CustomerSaveUseCase = new CustomerSaveUseCase(customerRepository)
+    const customerPostController: CustomerPostController = new CustomerPostController(customerSaveUseCase);
+    routerApi.post("/customer",  
+      [
+        body("name").exists(),
+        body('email').exists().trim().isEmail(),
+      ],
+      route(customerPostController.run.bind(customerPostController))
+    )
+
+
   }
 }
 export default new ApiRestCustomer()

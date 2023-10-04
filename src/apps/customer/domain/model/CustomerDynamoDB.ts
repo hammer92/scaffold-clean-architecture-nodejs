@@ -1,13 +1,9 @@
 import { ModelDynamoDB } from "../../../../infrastructure/driver-adapters/dynamodb/helper/ModelDynamoDB";
+import { Customer } from "./Customer";
 
-export interface ICustomer{
-   customerId?:string,
-   name:string,
-   email:string,
-}
-export class CustomerDynamoDB implements ModelDynamoDB<ICustomer> {
+export class CustomerDynamoDB implements ModelDynamoDB<Customer> {
   tableName?: string ="customer";
-  item: ICustomer ;
+  item: Customer ;
   attributeDefinitions: { AttributeName: string, AttributeType: string }[] = [
     {
       AttributeName: "customerId",
@@ -22,7 +18,7 @@ export class CustomerDynamoDB implements ModelDynamoDB<ICustomer> {
       AttributeType: "S",
     },
   ]
-  constructor(item:ICustomer){
+  constructor(item:Customer){
     this.item = item
   }
   

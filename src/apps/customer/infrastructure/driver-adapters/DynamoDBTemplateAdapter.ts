@@ -1,6 +1,7 @@
 import TemplateAdapterOperations from "../../../../infrastructure/driver-adapters/dynamodb/helper/TemplateAdapterOperations";
-import { ICustomer, CustomerDynamoDB } from "../../domain/model/CustomerDynamoDB";
+import { Customer } from "../../domain/model/Customer";
+import { CustomerDynamoDB } from "../../domain/model/CustomerDynamoDB";
 
-export default class DynamoDBTemplateAdapter extends 
-TemplateAdapterOperations<ICustomer, CustomerDynamoDB> {
+export default class CustomerAdapterDynamoDB extends 
+TemplateAdapterOperations<Customer, CustomerDynamoDB> {
 }
