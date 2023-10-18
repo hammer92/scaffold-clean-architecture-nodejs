@@ -15,6 +15,35 @@ class ApiRestCustomer implements ApiRestModel {
     // implementacion de api save Customer
     const customerSaveUseCase: CustomerSaveUseCase = new CustomerSaveUseCase(customerRepository)
     const customerPostController: CustomerPostController = new CustomerPostController(customerSaveUseCase);
+    
+    /**
+     * @swagger
+     * /pokemons:
+     *   get:
+     *     summary: Obtener una lista de pokemons.
+     *     description: Retorna una lista de pokemons.
+     *     responses:
+     *       200:
+     *         description: Lista de pokemons.
+     */
+    routerApi.post("/customer",
+      [
+        body("name").exists(),
+        body('email').exists().trim().isEmail(),
+      ],
+      route(customerPostController.run.bind(customerPostController))
+    )
+
+    /**
+     * @swagger
+     * /demo:
+     *   post:
+     *     summary: Obtener una lista de pokemons.
+     *     description: Retorna una lista de pokemons.
+     *     responses:
+     *       201:
+     *         description: crear de pokemons.
+     */
     routerApi.post("/customer",
       [
         body("name").exists(),

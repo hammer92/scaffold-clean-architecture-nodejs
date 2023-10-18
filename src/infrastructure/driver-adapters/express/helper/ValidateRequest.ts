@@ -11,7 +11,7 @@ export const route = (func: (req: Request, res: Response, next: () => void) => v
     if (!errors.isEmpty()) {
       return res
         .status(422)
-        .send(new ResponseBuilder().error("Validation failed", errors.array()));
+        .json(new ResponseBuilder().error("Validation failed", errors.array()));
     }
 
     /* process function and catch internal server errors */
